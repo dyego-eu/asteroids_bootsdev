@@ -1,6 +1,8 @@
 import pygame
 
+from player import Player
 from constants import (
+    PLAYER_RADIUS,
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
 )
@@ -14,14 +16,22 @@ def main() -> None:
 
     delta = 0
 
+    player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, 0)
+
     running = True
     while running:
+
         for event in pygame.event.get():
             if event == pygame.QUIT:
                 running = False
-        screen.fill("black")
-        pygame.display.flip()
+
+        player.update(delta)
+        screen.fill("red")
+        player.draw(screen)
+        
         delta = clock.tick(60) / 1000
+
+        pygame.display.flip()
 
     pygame.quit()
 
