@@ -2,7 +2,6 @@ import pygame
 
 from player import Player
 from constants import (
-    PLAYER_RADIUS,
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
 )
@@ -26,7 +25,7 @@ def main() -> None:
                 running = False
 
         player.update(delta)
-        screen.fill("red")
+        screen.fill("black")
         player.draw(screen)
         
         delta = clock.tick(60) / 1000
