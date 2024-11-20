@@ -3,11 +3,14 @@ from itertools import product
 
 import pygame
 
-from asteroids import Asteroid
-from asteroidfield import AsteroidField
-from player import Player
-from shot import Shot
+from game_objects import (
+    Asteroid,
+    AsteroidField,
+    Player,
+    Shot,
+)
 from constants import ScreenProps
+
 
 def main() -> None:
     """Main function for game loop"""

@@ -1,14 +1,14 @@
 from abc import ABC, abstractmethod
 from typing import Sequence
 
-import pygame
 from pygame import Vector2
 from pygame.surface import Surface
+from pygame.sprite import Sprite, Group
 
 
-class CircleShape(pygame.sprite.Sprite, ABC):
+class CircleShape(Sprite, ABC):
 
-    containers: Sequence[pygame.sprite.Group] = []
+    containers: Sequence[Group] = []
 
     def __init__(self, x: float, y: float, radius: float) -> None:
         super().__init__(*self.containers)

@@ -3,8 +3,8 @@ from typing import Sequence
 
 import pygame
 
-from circleshape import CircleShape
 from constants import AsteroidProps
+from .circleshape import CircleShape
 
 
 class Asteroid(CircleShape):

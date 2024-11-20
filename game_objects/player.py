@@ -1,12 +1,17 @@
 from typing import Sequence
+
 import pygame
-from circleshape import CircleShape
+from pygame.key import get_pressed
+from pygame.sprite import Group
+from pygame.math import Vector2
+
 from constants import PlayerProps, ScreenProps, ShotProps 
-from shot import Shot
+from .circleshape import CircleShape
+from .shot import Shot
 
 class Player(CircleShape):
 
-    containers: Sequence[pygame.sprite.Group] = []
+    containers: Sequence[Group] = []
    
     def __init__(self, x: float, y:float, rotation: float) -> None:
         self.rotation = rotation
@@ -14,8 +19,8 @@ class Player(CircleShape):
         self.shot_timer = 0.0
 
     @property
-    def triangle(self) -> list[pygame.Vector2]:
-        right = pygame.Vector2(1, 0).rotate(self.rotation + 90) / 1.5
+    def triangle(self) -> list[Vector2]:
+        right = Vector2(1, 0).rotate(self.rotation + 90) / 1.5
         return [
             self.position + self.forward * self.radius,
             self.position - self.forward * self.radius + right * self.radius,
@@ -23,8 +28,8 @@ class Player(CircleShape):
         ]
 
     @property
-    def forward(self) -> pygame.Vector2:
-        return pygame.Vector2(1, 0).rotate(self.rotation)
+    def forward(self) -> Vector2:
+        return Vector2(1, 0).rotate(self.rotation)
 
     def shoot(self) ->  None:
         if self.shot_timer > PlayerProps.SHOT_COOLDOWN:
@@ -33,7 +38,7 @@ class Player(CircleShape):
 
 
     def handle_keypress(self, delta: float) -> None:
-        key = pygame.key.get_pressed()
+        key = get_pressed()
 
         if key[pygame.K_a]:
             self.rotation -= PlayerProps.ROTATION_SPEED * delta
