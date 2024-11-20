@@ -5,9 +5,14 @@ from constants import (
     SCREEN_HEIGHT,
 )
 
-def main():
+def main() -> None:
+    """Main function for game loop"""
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
+    clock = pygame.time.Clock()
+
+    delta = 0
 
     running = True
     while running:
@@ -16,6 +21,8 @@ def main():
                 running = False
         screen.fill("black")
         pygame.display.flip()
+        delta = clock.tick(60) / 1000
+
     pygame.quit()
 
 if __name__ == "__main__":
