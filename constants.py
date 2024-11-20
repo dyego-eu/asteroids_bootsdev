@@ -1,12 +1,26 @@
-SCREEN_WIDTH = 1280
-SCREEN_HEIGHT = 720
+from enum import Enum
 
-ASTEROID_MIN_RADIUS = 20
-ASTEROID_KINDS = 3
-ASTEROID_SPAWN_RATE = 0.8  # seconds
-ASTEROID_MAX_RADIUS = ASTEROID_MIN_RADIUS * ASTEROID_KINDS
 
-PLAYER_RADIUS = 20
-PLAYER_ROTATION_SPEED = 300
-PLAYER_SPEED = 5
+class ScreenProps(int, Enum):
+    WIDTH = 1280
+    HEIGHT = 720
+
+
+class AsteroidProps(int, Enum):
+    MIN_RADIUS = 20
+    KINDS = 3
+    SPAWN_RATE = 1  # seconds
+    MAX_RADIUS = MIN_RADIUS * KINDS
+
+
+class PlayerProps(float, Enum):
+    RADIUS = 20
+    ROTATION_SPEED = 300
+    SPEED = 5
+    SHOT_COOLDOWN = 0.3
+
+
+class ShotProps(int, Enum):
+    SPEED = 500
+    RADIUS = 5
 
