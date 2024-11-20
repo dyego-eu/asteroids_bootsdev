@@ -1,3 +1,5 @@
+import sys
+
 import pygame
 
 from player import Player
@@ -15,24 +17,33 @@ def main() -> None:
 
     delta = 0
 
-    player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, 0)
+    drawables = pygame.sprite.Group()
+    updatables = pygame.sprite.Group()
+
+    Player.containers = (drawables, updatables)
+    Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, 0)
 
     running = True
     while running:
 
         for event in pygame.event.get():
-            if event == pygame.QUIT:
+            if event.type == pygame.QUIT:
                 running = False
 
-        player.update(delta)
         screen.fill("black")
-        player.draw(screen)
-        
+
+        for object in drawables:
+            object.draw(screen)
+
+        for object in updatables:
+            object.update(delta)
+    
         delta = clock.tick(60) / 1000
 
         pygame.display.flip()
 
     pygame.quit()
+    sys.exit(0)
 
 if __name__ == "__main__":
     main()
